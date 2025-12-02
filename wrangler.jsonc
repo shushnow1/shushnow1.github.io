@@ -1,5 +1,5 @@
 {
-  "name": "shushnow1-github-io", // 自定义项目名称（可任意）
+  "name": "blogshushnow1", // 自定义项目名称（可任意）
   "compatibility_date": "2025-12-02", // 与当前日期一致
   "assets": {
     "directory": "./"
