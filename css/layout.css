@@ -870,7 +870,7 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
 .kira-post-cover h1 {
   color: #fff;
   font-size: 2.5em;
-  font-weight: normal;
+  font-weight: bold;
   margin: 0;
   margin-top: 10px;
   padding-left: 1px;
@@ -882,12 +882,13 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
   z-index: 1;
   margin: 0;
   padding: 25px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 .kira-post-cover h1::after {
-  background-image: -moz-linear-gradient(to top, rgba(16,16,16,0.35) 25%, rgba(16,16,16,0) 100%);
-  background-image: -webkit-linear-gradient(to top, rgba(16,16,16,0.35) 25%, rgba(16,16,16,0) 100%);
-  background-image: -ms-linear-gradient(to top, rgba(16,16,16,0.35) 25%, rgba(16,16,16,0) 100%);
-  background-image: linear-gradient(to top, rgba(16,16,16,0.35) 25%, rgba(16,16,16,0) 100%);
+  background-image: -moz-linear-gradient(to top, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0) 100%);
+  background-image: -webkit-linear-gradient(to top, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0) 100%);
+  background-image: -ms-linear-gradient(to top, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0) 100%);
+  background-image: linear-gradient(to top, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0) 100%);
   -moz-pointer-events: none;
   -webkit-pointer-events: none;
   -ms-pointer-events: none;
