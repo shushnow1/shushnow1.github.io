@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/layout.css">
 
 		
-		<title> 我的朋友 -  阿达！！！！！</title>
+		<title> 音乐播放器使用示例 -  阿达！！！！！</title>
 		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
 		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
 		
@@ -155,7 +155,7 @@
 		</a>
 		
 		<a
-			class="kira-list-item mdui-ripple true"
+			class="kira-list-item mdui-ripple false"
 			href="/friends.html"
 			title="我的朋友"
 		>
@@ -286,43 +286,141 @@
 			<div class="kira-content">
 				<div id="kira-top-header"></div>
 				<div class="kira-main-content">
-					<div class="kira-post">
-	<article class="kira-friend">
-		<html><head></head><body><h2><span id="%E6%88%91%E7%9A%84%E6%9C%8B%E5%8F%8B">我的朋友</span></h2></body></html>
-        
+					
+<link rel="stylesheet" href="/css/kira-image.css">
 
-<link rel="stylesheet" href="/css/kira-friends.css">
 
-<div style="display: flex; flex-wrap: wrap; width: 100%; position: relative;">
-  
-    <div class="kira-friends-friendWrapper">
-      <a href="https://blog.187322.xyz/" target="_blank" class="mdui-ripple">
-        <div class="kira-friends-avatarWrapper" style="height: 65px; min-width: 65px; width: 65px;">
-          <img src="https://imgs.187322.xyz/about/cat.gif" class="disabled-kira-image" />
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
         </div>
-        <div class="kira-friends-blogName" style="width: 100%;">Kobayashi</div>
-      </a>
-    </div>
-  
-    <div class="kira-friends-friendWrapper">
-      <a href="https://www.yejinblok.cn/" target="_blank" class="mdui-ripple">
-        <div class="kira-friends-avatarWrapper" style="height: 65px; min-width: 65px; width: 65px;">
-          <img src="https://img01.anheyu.com/useruploads/243/2023/09/11/64fe7d926f8a0.jpg" class="disabled-kira-image" />
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
         </div>
-        <div class="kira-friends-blogName" style="width: 100%;">yejinblok</div>
-      </a>
     </div>
-  
 </div>
-<hr />
 
-
-	</article>
 	
-        <div class="kira-post-footer">
-            
+<link rel="stylesheet" href="/css/kira-code-copy.css">
 
-            
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="https://imgs.187322.xyz/banner/BA.gif"
+				data-sizes="auto"
+				alt="音乐播放器使用示例"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>音乐播放器使用示例</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年03月24日</a>
+			<a><i class="kirafont icon-edit-fill"></i>346 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
+		</div>
+		<html><head></head><body><h1><span id="%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B">音乐播放器使用示例</span></h1><h2><span id="%E5%A6%82%E4%BD%95%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8">如何在文章中添加音乐播放器</span></h2><h3><span id="%E6%96%B9%E6%B3%95%E4%B8%80%E4%BD%BF%E7%94%A8meting%E6%A0%87%E7%AD%BE%E6%8E%A8%E8%8D%90">方法一：使用Meting标签（推荐）</span></h3><p>您可以使用Meting标签来添加音乐播放器，支持网易云音乐、QQ音乐、Spotify等平台的音乐。</p>
+<h4><span id="%E7%A4%BA%E4%BE%8B%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90">示例：网易云音乐</span></h4><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">{% meting "436514312" "netease" "song" "theme:#4285f4" "mutex:true" "listmaxheight:340px" %}<br></code></pre></td></tr></tbody></table></figure>
+
+<p>效果如下：</p>
+<meting-js server="netease" type="song" id="436514312" mode="circulation" autoplay="false" mutex="true" listmaxheight="340px" preload="auto" theme="#4285f4">
+</meting-js>
+
+<h4><span id="%E7%A4%BA%E4%BE%8B%E6%92%AD%E6%94%BE%E5%88%97%E8%A1%A8">示例：播放列表</span></h4><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">{% meting "745432169" "netease" "playlist" "theme:#ff7675" "mutex:true" "listmaxheight:340px" %}<br></code></pre></td></tr></tbody></table></figure>
+
+<p>效果如下：</p>
+<meting-js server="netease" type="playlist" id="745432169" mode="circulation" autoplay="false" mutex="true" listmaxheight="340px" preload="auto" theme="#ff7675">
+</meting-js>
+
+<h3><span id="%E6%96%B9%E6%B3%95%E4%BA%8C%E4%BD%BF%E7%94%A8aplayer%E6%A0%87%E7%AD%BE">方法二：使用APlayer标签</span></h3><p>您也可以使用APlayer标签来自定义音乐播放器。</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">{% aplayer "歌曲名" "歌手" "歌曲链接" "封面链接" "theme:#00b894" %}<br></code></pre></td></tr></tbody></table></figure>
+
+<h2><span id="%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E">参数说明</span></h2><ul>
+<li><strong>第一个参数</strong>：歌曲ID（网易云音乐的歌曲ID）</li>
+<li><strong>第二个参数</strong>：平台（netease, tencent, kugou, xiami, baidu）</li>
+<li><strong>第三个参数</strong>：类型（song, playlist, album, search, artist）</li>
+<li><strong>第四个参数</strong>：主题颜色（可选）</li>
+<li><strong>第五个参数</strong>：是否互斥（mutex:true，同一页面只能播放一个）</li>
+<li><strong>第六个参数</strong>：播放列表最大高度（可选）</li>
+</ul>
+<h2><span id="%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%AD%8C%E6%9B%B2id">如何获取歌曲ID</span></h2><ol>
+<li><p><strong>网易云音乐</strong>：打开歌曲页面，URL中的数字就是歌曲ID<br>例如：<code>https://music.163.com/#/song?id=436514312</code>，歌曲ID是436514312</p>
+</li>
+<li><p><strong>播放列表</strong>：打开播放列表页面，URL中的数字就是播放列表ID<br>例如：<code>https://music.163.com/#/playlist?id=745432169</code>，播放列表ID是745432169</p>
+</li>
+</ol>
+<p>现在您可以在任何文章中使用这些标签来添加音乐播放器了！</p>
+</body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>Author：</strong>阿达<br>
+        <strong>Link：</strong><a href="http://example.com/2026/03/24/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E7%A4%BA%E4%BE%8B/" title="http:&#x2F;&#x2F;example.com&#x2F;2026&#x2F;03&#x2F;24&#x2F;音乐播放器示例&#x2F;" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;2026&#x2F;03&#x2F;24&#x2F;音乐播放器示例&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+
+		
 	<div class="giscus"></div>
   
     <script src="https://giscus.app/client.js"
@@ -343,8 +441,8 @@
     ></script>
   
 
-        </div>
-    
+	</div>
+	
 </div>
 
 				</div>
