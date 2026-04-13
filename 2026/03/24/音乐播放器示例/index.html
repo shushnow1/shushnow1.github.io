@@ -466,33 +466,94 @@
 
 		// 获取IP地址和位置信息
 		function getIPInfo() {
-			fetch('https://api.ipify.org?format=json')
-				.then(response => response.json())
-				.then(data => {
-					const ip = data.ip;
-					// 尝试获取位置信息
-					fetch(`https://ipapi.co/${ip}/json/`)
+			// 尝试多个IP获取API
+			const ipAPIs = [
+				'https://api.ipify.org?format=json',
+				'https://ifconfig.me/ip',
+				'https://api.myip.com'
+			];
+
+			// 尝试获取IP地址
+			function tryGetIP(index) {
+				if (index >= ipAPIs.length) {
+					// 所有API都失败了
+					document.getElementById('kira-ip-info').innerHTML = `
+						<div class="kira-ip">IP: 获取失败</div>
+						<div class="kira-location">位置信息获取失败</div>
+					`;
+					return;
+				}
+
+				const api = ipAPIs[index];
+
+				if (api === 'https://ifconfig.me/ip') {
+					// 这个API返回纯文本IP
+					fetch(api)
+						.then(response => response.text())
+						.then(ip => {
+							ip = ip.trim();
+							getLocation(ip);
+						})
+						.catch(err => {
+							tryGetIP(index + 1);
+						});
+				} else {
+					// 其他API返回JSON
+					fetch(api)
+						.then(response => response.json())
+						.then(data => {
+							const ip = data.ip || data.ip_address;
+							if (ip) {
+								getLocation(ip);
+							} else {
+								throw new Error('No IP found');
+							}
+						})
+						.catch(err => {
+							tryGetIP(index + 1);
+						});
+				}
+			}
+
+			// 获取位置信息
+			function getLocation(ip) {
+				// 尝试多个位置信息API
+				const locationAPIs = [
+					`https://ipapi.co/${ip}/json/`,
+					`https://ipinfo.io/${ip}/json`,
+					`https://api.ipstack.com/${ip}?access_key=4101b9939e0c507a3e410f38f0707d39`
+				];
+
+				function tryGetLocation(index) {
+					if (index >= locationAPIs.length) {
+						// 所有API都失败了
+						document.getElementById('kira-ip-info').innerHTML = `
+							<div class="kira-ip">IP: ${ip}</div>
+							<div class="kira-location">位置信息获取失败</div>
+						`;
+						return;
+					}
+
+					const api = locationAPIs[index];
+					fetch(api)
 						.then(response => response.json())
 						.then(locationData => {
-							const city = locationData.city || '未知城市';
+							const city = locationData.city || locationData.region || '未知城市';
 							document.getElementById('kira-ip-info').innerHTML = `
 								<div class="kira-ip">IP: ${ip}</div>
 								<div class="kira-location">${city}</div>
 							`;
 						})
 						.catch(err => {
-							document.getElementById('kira-ip-info').innerHTML = `
-								<div class="kira-ip">IP: ${ip}</div>
-								<div class="kira-location">位置信息获取失败</div>
-							`;
+							tryGetLocation(index + 1);
 						});
-				})
-				.catch(err => {
-					document.getElementById('kira-ip-info').innerHTML = `
-						<div class="kira-ip">IP: 获取失败</div>
-						<div class="kira-location">位置信息获取失败</div>
-					`;
-				});
+				}
+
+				tryGetLocation(0);
+			}
+
+			// 开始尝试获取IP
+			tryGetIP(0);
 		}
 
 		// 初始化
