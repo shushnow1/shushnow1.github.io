@@ -826,7 +826,8 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: sticky;
+  position: fixed;
+  right: 20px;
   pointer-events: none;
   top: 0;
   z-index: 10;
@@ -879,6 +880,33 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
 }
 .kira-right-column .kira-backtotop i {
   font-size: 22px;
+}
+@media screen and (max-width: 1200px) {
+  .kira-right-column {
+    right: 10px;
+    width: 160px;
+  }
+  .kira-right-column .kira-info-panel {
+    width: 140px;
+    padding: 10px;
+  }
+  .kira-right-column .kira-info-panel .kira-info-content #kira-date-time .kira-date {
+    font-size: 12px;
+  }
+  .kira-right-column .kira-info-panel .kira-info-content #kira-date-time .kira-time {
+    font-size: 16px;
+  }
+  .kira-right-column .kira-info-panel .kira-info-content #kira-ip-info .kira-ip {
+    font-size: 10px;
+  }
+  .kira-right-column .kira-info-panel .kira-info-content #kira-ip-info .kira-location {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .kira-right-column {
+    display: none;
+  }
 }
 .kira-post-cover {
   width: 100%;
