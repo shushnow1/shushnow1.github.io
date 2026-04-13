@@ -662,35 +662,40 @@
 				];
 
 				function tryGetLocation(index) {
-				if (index >= locationAPIs.length) {
-					// 所有API都失败了
-					document.getElementById('kira-ip-info').innerHTML = `
-						<div class="kira-ip">IP: ${ip}</div>
-						<div class="kira-location">位置信息获取失败</div>
-					`;
-					return;
-				}
-
-				const api = locationAPIs[index];
-				fetch(api)
-					.then(response => response.json())
-					.then(locationData => {
-						const city = locationData.city || locationData.region || '未知城市';
-						const lat = locationData.latitude || locationData.lat;
-						const lon = locationData.longitude || locationData.lon;
+					if (index >= locationAPIs.length) {
+						// 所有API都失败了
 						document.getElementById('kira-ip-info').innerHTML = `
 							<div class="kira-ip">IP: ${ip}</div>
-							<div class="kira-location">${city}</div>
+							<div class="kira-location">位置信息获取失败</div>
 						`;
-						// 获取天气信息
-						if (lat && lon) {
-							getWeatherInfo(lat, lon);
-						}
-					})
-					.catch(err => {
-						tryGetLocation(index + 1);
-					});
-			}
+						// 尝试使用IP直接获取天气
+						getWeatherByIP(ip);
+						return;
+					}
+
+					const api = locationAPIs[index];
+					fetch(api)
+						.then(response => response.json())
+						.then(locationData => {
+							const city = locationData.city || locationData.region || '未知城市';
+							const lat = locationData.latitude || locationData.lat;
+							const lon = locationData.longitude || locationData.lon;
+							document.getElementById('kira-ip-info').innerHTML = `
+								<div class="kira-ip">IP: ${ip}</div>
+								<div class="kira-location">${city}</div>
+							`;
+							// 获取天气信息
+							if (lat && lon) {
+								getWeatherInfo(lat, lon);
+							} else {
+								// 尝试使用城市名称获取天气
+								getWeatherByCity(city);
+							}
+						})
+						.catch(err => {
+							tryGetLocation(index + 1);
+						});
+				}
 
 				tryGetLocation(0);
 			}
@@ -716,6 +721,61 @@
 						<div class="kira-temperature">${temperature}°C</div>
 						<div class="kira-humidity">湿度: ${humidity}%</div>
 					`;
+				})
+				.catch(err => {
+					// 尝试使用IP获取天气
+					getWeatherByIP('');
+				});
+		}
+
+		// 通过IP获取天气
+		function getWeatherByIP(ip) {
+			// 使用OpenWeatherMap API通过IP获取天气
+			const apiKey = 'd7c4b7c3a788041c0e8d2f2a4f62c9b5';
+			const weatherApi = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=metric&lang=zh_cn&q=${ip || ''}`;
+
+			fetch(weatherApi)
+				.then(response => response.json())
+				.then(data => {
+					if (data.weather) {
+						const weather = data.weather[0].description;
+						const temperature = Math.round(data.main.temp);
+						const humidity = data.main.humidity;
+						document.getElementById('kira-weather-info').innerHTML = `
+							<div class="kira-weather">${weather}</div>
+							<div class="kira-temperature">${temperature}°C</div>
+							<div class="kira-humidity">湿度: ${humidity}%</div>
+						`;
+					} else {
+						// 尝试使用默认城市
+						getWeatherByCity('广州');
+					}
+				})
+				.catch(err => {
+					// 尝试使用默认城市
+					getWeatherByCity('广州');
+				});
+		}
+
+		// 通过城市名称获取天气
+		function getWeatherByCity(city) {
+			// 使用OpenWeatherMap API通过城市名称获取天气
+			const apiKey = 'd7c4b7c3a788041c0e8d2f2a4f62c9b5';
+			const weatherApi = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=metric&lang=zh_cn&q=${city || '广州'}`;
+
+			fetch(weatherApi)
+				.then(response => response.json())
+				.then(data => {
+					if (data.weather) {
+						const weather = data.weather[0].description;
+						const temperature = Math.round(data.main.temp);
+						const humidity = data.main.humidity;
+						document.getElementById('kira-weather-info').innerHTML = `
+							<div class="kira-weather">${weather}</div>
+							<div class="kira-temperature">${temperature}°C</div>
+							<div class="kira-humidity">湿度: ${humidity}%</div>
+						`;
+					}
 				})
 				.catch(err => {
 					document.getElementById('kira-weather-info').innerHTML = `
