@@ -451,6 +451,7 @@
 	<div class="kira-info-panel">
 		<div class="kira-info-content">
 			<div id="kira-date-time"></div>
+			<div id="kira-weather-info"></div>
 			<div id="kira-ip-info"></div>
 		</div>
 	</div>
@@ -541,35 +542,66 @@
 				];
 
 				function tryGetLocation(index) {
-					if (index >= locationAPIs.length) {
-						// 所有API都失败了
+				if (index >= locationAPIs.length) {
+					// 所有API都失败了
+					document.getElementById('kira-ip-info').innerHTML = `
+						<div class="kira-ip">IP: ${ip}</div>
+						<div class="kira-location">位置信息获取失败</div>
+					`;
+					return;
+				}
+
+				const api = locationAPIs[index];
+				fetch(api)
+					.then(response => response.json())
+					.then(locationData => {
+						const city = locationData.city || locationData.region || '未知城市';
+						const lat = locationData.latitude || locationData.lat;
+						const lon = locationData.longitude || locationData.lon;
 						document.getElementById('kira-ip-info').innerHTML = `
 							<div class="kira-ip">IP: ${ip}</div>
-							<div class="kira-location">位置信息获取失败</div>
+							<div class="kira-location">${city}</div>
 						`;
-						return;
-					}
-
-					const api = locationAPIs[index];
-					fetch(api)
-						.then(response => response.json())
-						.then(locationData => {
-							const city = locationData.city || locationData.region || '未知城市';
-							document.getElementById('kira-ip-info').innerHTML = `
-								<div class="kira-ip">IP: ${ip}</div>
-								<div class="kira-location">${city}</div>
-							`;
-						})
-						.catch(err => {
-							tryGetLocation(index + 1);
-						});
-				}
+						// 获取天气信息
+						if (lat && lon) {
+							getWeatherInfo(lat, lon);
+						}
+					})
+					.catch(err => {
+						tryGetLocation(index + 1);
+					});
+			}
 
 				tryGetLocation(0);
 			}
 
 			// 开始尝试获取IP
 			tryGetIP(0);
+		}
+
+		// 获取天气信息
+		function getWeatherInfo(lat, lon) {
+			// 使用OpenWeatherMap API获取天气信息
+			const apiKey = 'd7c4b7c3a788041c0e8d2f2a4f62c9b5';
+			const weatherApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=zh_cn`;
+
+			fetch(weatherApi)
+				.then(response => response.json())
+				.then(data => {
+					const weather = data.weather[0].description;
+					const temperature = Math.round(data.main.temp);
+					const humidity = data.main.humidity;
+					document.getElementById('kira-weather-info').innerHTML = `
+						<div class="kira-weather">${weather}</div>
+						<div class="kira-temperature">${temperature}°C</div>
+						<div class="kira-humidity">湿度: ${humidity}%</div>
+					`;
+				})
+				.catch(err => {
+					document.getElementById('kira-weather-info').innerHTML = `
+						<div class="kira-weather">天气获取失败</div>
+					`;
+				});
 		}
 
 		// 初始化

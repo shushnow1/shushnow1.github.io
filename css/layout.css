@@ -825,23 +825,22 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   position: fixed;
-  right: 0;
+  right: 20px;
   pointer-events: none;
   top: 0;
   z-index: 5;
 }
 .kira-right-column .kira-info-panel {
   background-color: rgba(255,255,255,0.8);
-  border-radius: 10px 0 0 10px;
+  border-radius: 10px;
   padding: 15px;
   margin-top: 20px;
-  box-shadow: -2px 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   backdrop-filter: blur(10px);
   pointer-events: all;
   width: 180px;
-  margin-right: 0;
 }
 .kira-right-column .kira-info-panel .kira-info-content {
   text-align: center;
@@ -856,6 +855,19 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
 }
 .kira-right-column .kira-info-panel .kira-info-content #kira-date-time .kira-time {
   font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+.kira-right-column .kira-info-panel .kira-info-content #kira-weather-info {
+  margin-bottom: 10px;
+}
+.kira-right-column .kira-info-panel .kira-info-content #kira-weather-info .kira-weather {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+.kira-right-column .kira-info-panel .kira-info-content #kira-weather-info .kira-temperature {
+  font-size: 16px;
   font-weight: bold;
   color: #333;
 }
@@ -876,7 +888,6 @@ details div.kira-aplayer-container div[id^='aplayer-'] div.aplayer-body div.apla
   border-radius: 50%;
   margin-top: auto;
   margin-bottom: 15px;
-  margin-right: 10px;
   transition: 500ms;
   pointer-events: all;
 }
